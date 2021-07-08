@@ -1,0 +1,10 @@
+
+Abhijit,12345,2434,Current
+Rahul Sen,12365,12035,Current
+1452,15478,145,
+Abhijit,123,123,Current
+kikte,1230,1230,Current
+Rahul sen,1254,1548,Savings
+Dikder,12548,12547,Savings
+Shara,1458,145,Savings
+Abhijit,12354,1456,Current

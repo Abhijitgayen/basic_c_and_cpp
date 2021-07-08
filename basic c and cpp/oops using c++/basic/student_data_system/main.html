@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>main.html</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta name="generator" content="SynEdit HTML exporter" />
+<style type="text/css">
+<!--
+body { color: #000000; background-color: #FFFFFF; }
+.cpp1-assembler { color: #0000FF; }
+.cpp1-character { color: #000000; }
+.cpp1-comment { color: #0078D7; font-style: italic; }
+.cpp1-float { color: #800080; }
+.cpp1-hexadecimal { color: #800080; }
+.cpp1-identifier { color: #000000; }
+.cpp1-illegalchar { color: #000000; }
+.cpp1-number { color: #800080; }
+.cpp1-octal { color: #800080; }
+.cpp1-preprocessor { color: #008000; }
+.cpp1-reservedword { color: #000000; font-weight: bold; }
+.cpp1-space { background-color: #FFFFFF; color: #000000; }
+.cpp1-string { color: #0000FF; font-weight: bold; }
+.cpp1-symbol { color: #FF0000; font-weight: bold; }
+-->
+</style>
+</head>
+<body>
+<pre>
+<code><span style="font: 16pt Consolas;"><span class="cpp1-preprocessor">#include&lt;bits/stdc++.h&gt;
+#include&lt;windows.h&gt;
+</span><span class="cpp1-reservedword">using</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">namespace</span><span class="cpp1-space"> std</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-comment">//global functions
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> write_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">string namex</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> accountNox</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> balancec</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string typex</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string filename</span><span class="cpp1-symbol">);</span><span class="cpp1-space"> </span><span class="cpp1-comment">//function to write record in  file
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> write_loan</span><span class="cpp1-symbol">(</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> accountNox</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> loanA</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string timeper</span><span class="cpp1-symbol">,</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> Monthly </span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string filename</span><span class="cpp1-symbol">);</span><span class="cpp1-comment">//function to write record in  file
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> updateData</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-symbol">,</span><span class="cpp1-identifier">string</span><span class="cpp1-symbol">,</span><span class="cpp1-reservedword">int</span><span class="cpp1-symbol">);</span><span class="cpp1-space"> </span><span class="cpp1-comment">//function to update data in file
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> modify_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-symbol">);</span><span class="cpp1-space">    </span><span class="cpp1-comment">//function to modify record of file
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> delete_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-symbol">);</span><span class="cpp1-space">    </span><span class="cpp1-comment">//function to delete record of file
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> display_all</span><span class="cpp1-symbol">();</span><span class="cpp1-space">        </span><span class="cpp1-comment">//function to display all account details
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> depositAmount</span><span class="cpp1-symbol">(</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-symbol">);</span><span class="cpp1-space"> </span><span class="cpp1-comment">// function to desposit for given account
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> withdrawAmount</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-symbol">);</span><span class="cpp1-space"> </span><span class="cpp1-comment">// function to withdraw for given account
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> intro</span><span class="cpp1-symbol">();</span><span class="cpp1-space">    </span><span class="cpp1-comment">//introductory screen function
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> showStudentLoanDtails</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-symbol">);
+</span><span class="cpp1-reservedword">bool</span><span class="cpp1-space"> verifyAccount</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">);</span><span class="cpp1-space"> </span><span class="cpp1-comment">//to verify and extract details from file
+</span><span class="cpp1-reservedword">bool</span><span class="cpp1-space"> verifyLoan</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">);
+</span><span class="cpp1-comment">//for int into string conversion
+</span><span class="cpp1-identifier">string intIntoString</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> x</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+</span><span class="cpp1-space">	string s </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> to_string</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">x</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> s</span><span class="cpp1-symbol">;
+}
+</span><span class="cpp1-comment">//for string into int conversion
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">string x</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+</span><span class="cpp1-space">	stringstream ss</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	ss </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> x</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	ss </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">;
+}
+
+</span><span class="cpp1-comment">//Clases
+</span><span class="cpp1-reservedword">class</span><span class="cpp1-space"> bank </span><span class="cpp1-symbol">{
+</span><span class="cpp1-reservedword">private</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">	string bankName</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string bankAddress</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> loanAmount</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string TimePeriod</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> MonthlyInstallemnt</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-reservedword">public</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">	bank</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		 bankName</span><span class="cpp1-symbol">=</span><span class="cpp1-string">&quot;State Bank of India&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		 bankAddress</span><span class="cpp1-symbol">=</span><span class="cpp1-string">&quot;Khardha, Kolkata -700116, West Bengal&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	bank</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">string bankNamex</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string bankAddressx</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		bankName </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> bankNamex</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		bankAddress </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> bankAddressx</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	bank</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> loanAmountx</span><span class="cpp1-symbol">,</span><span class="cpp1-identifier">string TimePeriodx</span><span class="cpp1-symbol">,</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> MonthlyInstallemntx</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		loanAmount </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> loanAmountx</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		TimePeriod </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> TimePeriodx</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		MonthlyInstallemnt </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> MonthlyInstallemntx</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">//getter setters
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> setBankName</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">string bankNamex</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		bankName </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> bankNamex</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	string getBankName</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> bankName</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> setBankAddress</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">string bankAddressx</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		bankAddress </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> bankAddressx</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	string getBankAddress</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> bankAddress</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> setLoanAmount</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> loan</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		loanAmount </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> loan</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> getLoanAmount</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> loanAmount</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> setTimePeriod</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">string time</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		TimePeriod </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> time</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	string getTimePeriod</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> TimePeriod</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> setMonthlyInstallemnt</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> loan</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		MonthlyInstallemnt </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> loan</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> getMonthlyInstallemnt</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> MonthlyInstallemnt</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">//abstract function
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">virtual</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> studentLoan</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> 
+</span><span class="cpp1-symbol">};
+
+</span><span class="cpp1-comment">//abstract class and extended class from bank
+</span><span class="cpp1-reservedword">class</span><span class="cpp1-space"> account </span><span class="cpp1-symbol">:</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">public</span><span class="cpp1-space"> bank </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	string name</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> accountNo</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> balance</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string type</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-reservedword">public</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">//default constructor
+</span><span class="cpp1-space">	account</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	account</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">string bankNamex</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string bankAddessx</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string namex</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> accountNox</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> balancec</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string typex</span><span class="cpp1-symbol">):</span><span class="cpp1-identifier">bank</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">bankNamex</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> bankAddessx</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		 name</span><span class="cpp1-symbol">=</span><span class="cpp1-identifier">namex</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		 accountNo</span><span class="cpp1-symbol">=</span><span class="cpp1-identifier">accountNox</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		
+		 balance</span><span class="cpp1-symbol">=</span><span class="cpp1-identifier">balancec</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		 type</span><span class="cpp1-symbol">=</span><span class="cpp1-identifier">typex</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	account</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> loanA</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string timeper</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> Monthly</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string namex</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> accountNox</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> balancec</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string typex</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">:</span><span class="cpp1-identifier">bank</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">loanA</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> timeper</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> Monthly</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		name </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> namex</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		accountNo </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> accountNox</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">		balance </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> balancec</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		type </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> typex</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">//getter seetters
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> setName</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">string namex</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		name </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> namex</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	string getName</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> name</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> setAccounNo</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> AccountNo</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		accountNo </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> AccountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> getAccountNo</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> accountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> setBalance</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> balancex</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		balance </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> balancex</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> getBalance</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> balance</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> setType</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">string typex</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		type </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> typex</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	string getType</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> type</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+
+
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">//****functions*******
+</span><span class="cpp1-space">		</span><span class="cpp1-comment">//function to create a new account
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> create_acc</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> typec</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		crlabel</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\nEnter The Account Number :&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> accountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">verifyAccount</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Account Already Exist......\n\t\tPlease Enter details again.....&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			Sleep</span><span class="cpp1-symbol">(</span><span class="cpp1-number">2000</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> crlabel</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			
+		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tEnter Name of The Account Holder : &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		cin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">ignore</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">std</span><span class="cpp1-symbol">::</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> name</span><span class="cpp1-symbol">);</span><span class="cpp1-comment">//for string input
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tEnter Type of Account\n\t1. Current Account \n\t2. Savings account  &quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-string">&quot;\tEnter Type : &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> typec</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">typec </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">			type </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;Current&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">typec </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">			type </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;Savings&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\tEnter The Initial amount you want to deposit : &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> balance</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	
+		
+		
+			</span><span class="cpp1-comment">//write into file 
+</span><span class="cpp1-space">		write_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">name</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> accountNo</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> balance</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> type</span><span class="cpp1-symbol">,</span><span class="cpp1-string">&quot;accounts.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\n\t\tCongrats Account Has Been Created......&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		
+	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">//function to show account details
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> show_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">verifyAccount</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\t &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> getBankName</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\t &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> getBankAddress</span><span class="cpp1-symbol">();
+
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n*****************************************&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\t ACCOUNT DETAILS&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Account no. : &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> accountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Account Holder Name : &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> name</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Account Type : &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> type</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Account Balance: Rs &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> balance </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\\-&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n*****************************************&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tAccount does not exist....&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">};</span><span class="cpp1-space">    
+	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> modify</span><span class="cpp1-symbol">();</span><span class="cpp1-space">    </span><span class="cpp1-comment">//function to modify account details
+</span><span class="cpp1-space">	   </span><span class="cpp1-comment">//function to accept deposit amount
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> deposit</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> d</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		balance </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> balance </span><span class="cpp1-symbol">+</span><span class="cpp1-space"> d</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">};</span><span class="cpp1-space"> 
+	</span><span class="cpp1-comment">//function to subtract withdrawal amount
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> withdraw</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> d</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		balance </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> balance </span><span class="cpp1-symbol">-</span><span class="cpp1-space"> d</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">};</span><span class="cpp1-space">    
+	   
+	</span><span class="cpp1-comment">//virtual function for student loan
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> studentLoan</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> loanA</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		string timeper</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> AccountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> installment</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	label</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\nWelcome to student loan &quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\tEnter your account no : &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> AccountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">verifyAccount</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">AccountNo</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">verifyLoan</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">AccountNo</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tYou Already have taken Laon!!! Please pay the installment first....&quot;</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				labelAA</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tEnter loan amount you want to take : &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> loanA</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				cout</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">loanA </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;&amp;</span><span class="cpp1-space"> loanA</span><span class="cpp1-symbol">&lt;</span><span class="cpp1-number">10000</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tAmount cant be negative and should be greater than 10000\n\tEnter again&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					Sleep</span><span class="cpp1-symbol">(</span><span class="cpp1-number">2000</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> labelAA</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\nselect time period \n\t 1. 1 year \n\t 2. 3 years \n\t 3. 5 years\nChoose : &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;&amp;</span><span class="cpp1-space"> choice </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&amp;&amp;</span><span class="cpp1-space"> choice </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tWrong choice enter again..&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					Sleep</span><span class="cpp1-symbol">(</span><span class="cpp1-number">2000</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> label</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">switch</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">					timeper </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;1 year&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					installment </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> loanA </span><span class="cpp1-symbol">/</span><span class="cpp1-space"> </span><span class="cpp1-number">12</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tYour monthly Insatallment is Rs &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> installment </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot; \\-&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">					timeper </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;3 year&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					installment </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> loanA </span><span class="cpp1-symbol">/</span><span class="cpp1-space"> </span><span class="cpp1-number">36</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tYour monthly Insatallment is Rs &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> installment </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot; \\-&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">					timeper </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;5 year&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					installment </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> loanA </span><span class="cpp1-symbol">/</span><span class="cpp1-space"> </span><span class="cpp1-number">60</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tYour monthly Insatallment is Rs &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> installment </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot; \\-&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				write_loan</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">AccountNo</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> loanA</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> timeper</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> installment</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;studentLoan.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tCongratulation!!! you have succefully recieved loan.......&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\t...Account does not exist......&quot;</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">		
+	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	
+</span><span class="cpp1-symbol">};
+
+
+</span><span class="cpp1-comment">//global instance
+</span><span class="cpp1-identifier">account ac</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-comment">//main
+</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> main</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;color 0a&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	
+	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> ch</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	intro</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">	menuLabel</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">do
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);</span><span class="cpp1-space">   </span><span class="cpp1-comment">//Clear The Screen
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\nBank MENU&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\t01. NEW ACCOUNT&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\t02. DEPOSIT&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\t03. WITHDRAW&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\t04. BALANCE ENQUIRY&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\t05. COMPLETE ACCOUNT HOLDERS LIST&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\t06. CLOSE AN ACCOUNT&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\t07. MODIFY AN ACCOUNT&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\t08. Student Loan Application&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\t09. Student Loan Details&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\tPress q to EXIT&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;Select Your Option (1-9) : &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> ch</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);</span><span class="cpp1-space">   </span><span class="cpp1-comment">//Clear The Screen
+
+</span><span class="cpp1-space">		</span><span class="cpp1-comment">//conditions
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">switch</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> '1'</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">create_acc</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPress 1 to go back main menu &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> menuLabel</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPlease enter 1 to go back to main menu&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> '2'</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\n\tEnter The Account Number : &quot;</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			depositAmount</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPress 1 to go back main menu &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> menuLabel</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPlease enter 1 to go back to main menu&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> '3'</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\n\tEnter The Account Number : &quot;</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			withdrawAmount</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPress 1 to go back main menu &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> menuLabel</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPlease enter 1 to go back to main menu&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> '4'</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\n\tEnter The Account Number : &quot;</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">show_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPress 1 to go back main menu &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> menuLabel</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPlease enter 1 to go back to main menu&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> '5'</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			display_all</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPress 1 to go back main menu &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> menuLabel</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPlease enter 1 to go back to main menu&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> '6'</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\n\tEnter The Account Number : &quot;</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			delete_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPress 1 to go back main menu &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> menuLabel</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPlease enter 1 to go back to main menu&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> '7'</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\n\tEnter The Account Number : &quot;</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			modify_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPress 1 to go back main menu &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> menuLabel</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPlease enter 1 to go back to main menu&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> '8'</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">studentLoan</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPress 1 to go back main menu &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> menuLabel</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPlease enter 1 to go back to main menu&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> '9'</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\n\tEnter The Account Number : &quot;</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			showStudentLoanDtails</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPress 1 to go back main menu &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> menuLabel</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tPlease enter 1 to go back to main menu&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> 'q'</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\n\tThanks For Visiting Our Bank!&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">default</span><span class="cpp1-symbol">:</span><span class="cpp1-identifier">cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\a&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		
+
+	</span><span class="cpp1-symbol">}</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch </span><span class="cpp1-symbol">!=</span><span class="cpp1-space"> 'q'</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+}
+
+</span><span class="cpp1-comment">//function declaration
+
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> intro</span><span class="cpp1-symbol">()
+{
+
+</span><span class="cpp1-space">	cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\n\n\t\t\t\tWelcome To BANK MANAGEMENT SYSTEM&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">//Note: All the data of the new account entered will be stored in the file
+</span><span class="cpp1-space">	cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\n\n\t\t\t\tPlease wait while loading\n\n&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> a </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">177</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> b </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">219</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\t\t\t\t&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;=</span><span class="cpp1-space"> </span><span class="cpp1-number">15</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> a</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\r&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\t\t\t\t&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;=</span><span class="cpp1-space"> </span><span class="cpp1-number">15</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> b</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		Sleep</span><span class="cpp1-symbol">(</span><span class="cpp1-number">200</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+}
+
+</span><span class="cpp1-reservedword">bool</span><span class="cpp1-space"> verifyAccount</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	string name</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string accountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string balance</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string type</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> ch</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string line</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> usedDelimi</span><span class="cpp1-symbol">=</span><span class="cpp1-character">','</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> 
+		</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-comment">//file handling
+</span><span class="cpp1-space">		string filename </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;accounts.txt&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		ifstream srcFile</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">filename</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+</span><span class="cpp1-space">		
+		</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">srcFile</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">is_open</span><span class="cpp1-symbol">())
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">srcFile</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">))
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				</span><span class="cpp1-comment">//Gets line of your source file into line variable
+</span><span class="cpp1-space">				delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">length</span><span class="cpp1-symbol">();</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					ch </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">at</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-comment">//if , seperator found in file
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> usedDelimi</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">						delimiterCounter</span><span class="cpp1-symbol">++;
+</span><span class="cpp1-space">						</span><span class="cpp1-reservedword">continue</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">					 </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter</span><span class="cpp1-symbol">==</span><span class="cpp1-number">0</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">						 name</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">					 </span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">						 accountNo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					 </span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">					 </span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">						 balance</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					 </span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">					 </span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">						 type</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					 </span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">					
+				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">setName</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">name</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">					ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">setAccounNo</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">));
+</span><span class="cpp1-space">					ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">setBalance</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">balance</span><span class="cpp1-symbol">));
+
+</span><span class="cpp1-space">					ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">setType</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">type</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				name</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">				accountNo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">				balance</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">				type</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n Unable to open file&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		srcFile</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">close</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">false</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	
+</span><span class="cpp1-symbol">}
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> write_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">string namex</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> accountNox</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> balancec</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string typex</span><span class="cpp1-symbol">,</span><span class="cpp1-identifier">string filename</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	ofstream myfile</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	myfile</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">open</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">filename</span><span class="cpp1-symbol">,</span><span class="cpp1-identifier">ios</span><span class="cpp1-symbol">::</span><span class="cpp1-identifier">app</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-symbol">(!</span><span class="cpp1-identifier">myfile</span><span class="cpp1-symbol">){
+</span><span class="cpp1-space">		cerr</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-string">&quot;\n\t\tfile can not open&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		exit</span><span class="cpp1-symbol">(</span><span class="cpp1-number">1</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	myfile </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> namex </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> ',' </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> accountNox </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> ',' </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> balancec </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> ',' </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> typex</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	myfile</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">close</span><span class="cpp1-symbol">();
+
+}
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> updateData</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">,</span><span class="cpp1-identifier">string update</span><span class="cpp1-symbol">,</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	string fileName </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;accounts.txt&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> ch</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> usedDelimi </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> ','</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string line</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	ifstream fin</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	ofstream fout</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string name</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string accountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string balance</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string type</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	fin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">open</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">fileName</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">fin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">is_open</span><span class="cpp1-symbol">())</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+</span><span class="cpp1-space">		fout</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">open</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;temp.txt&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> ios</span><span class="cpp1-symbol">::</span><span class="cpp1-identifier">out </span><span class="cpp1-symbol">|</span><span class="cpp1-space"> ios</span><span class="cpp1-symbol">::</span><span class="cpp1-identifier">binary</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">fin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">))
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">length</span><span class="cpp1-symbol">();</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+</span><span class="cpp1-space">				ch </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">at</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> usedDelimi</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					delimiterCounter</span><span class="cpp1-symbol">++;
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">continue</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					name</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					accountNo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					balance</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					type</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-comment">//for acount no
+</span><span class="cpp1-space">					write_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">update</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">balance</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> type</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;temp.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">)</span><span class="cpp1-comment">//for account no 
+</span><span class="cpp1-space">					write_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">name</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">update</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">balance</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> type</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;temp.txt&quot;</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">)</span><span class="cpp1-comment">//for balance
+</span><span class="cpp1-space">					write_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">name</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">update</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> type</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;temp.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">4</span><span class="cpp1-symbol">)</span><span class="cpp1-comment">//for type
+</span><span class="cpp1-space">					write_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">name</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">balance</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> update</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;temp.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-symbol">(!(</span><span class="cpp1-identifier">name</span><span class="cpp1-symbol">==</span><span class="cpp1-string">&quot;&quot;</span><span class="cpp1-symbol">||</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">==</span><span class="cpp1-string">&quot;&quot;</span><span class="cpp1-symbol">||</span><span class="cpp1-identifier">balance</span><span class="cpp1-symbol">==</span><span class="cpp1-string">&quot;&quot;</span><span class="cpp1-symbol">||</span><span class="cpp1-identifier">type</span><span class="cpp1-symbol">==</span><span class="cpp1-string">&quot;&quot;</span><span class="cpp1-symbol">))
+</span><span class="cpp1-space">				write_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">name</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">balance</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> type</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;temp.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			name</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			accountNo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			balance</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			type</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		fin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">close</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		fout</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">close</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		remove</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;accounts.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		rename</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;temp.txt&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;accounts.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\t File not Found.....&quot;</span><span class="cpp1-symbol">;
+
+}
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> DeleteData</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> check</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	string fileName </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;accounts.txt&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> ch</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> usedDelimi </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> ','</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string line</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	ifstream fin</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	ofstream fout</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string name</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string accountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string balance</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string type</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	fin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">open</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">fileName</span><span class="cpp1-symbol">);
+
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">fin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">is_open</span><span class="cpp1-symbol">())</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		
+		fout</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">open</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;temp.txt&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> ios</span><span class="cpp1-symbol">::</span><span class="cpp1-identifier">out </span><span class="cpp1-symbol">|</span><span class="cpp1-space"> ios</span><span class="cpp1-symbol">::</span><span class="cpp1-identifier">binary</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">fin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">))
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">length</span><span class="cpp1-symbol">();</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+</span><span class="cpp1-space">				ch </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">at</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> usedDelimi</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					delimiterCounter</span><span class="cpp1-symbol">++;
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">continue</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					name</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					accountNo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					balance</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					type</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				
+
+			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> check</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				
+			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">				write_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">name</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">balance</span><span class="cpp1-symbol">),</span><span class="cpp1-space"> type</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;temp.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			name</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			accountNo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			balance</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			type</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		fin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">close</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		fout</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">close</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		remove</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;accounts.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		rename</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;temp.txt&quot;</span><span class="cpp1-symbol">,</span><span class="cpp1-string">&quot;accounts.txt&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n File not Found&quot;</span><span class="cpp1-symbol">;
+
+}
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> depositAmount</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">verifyAccount</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	label2</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tEnter The Ammount you want to Deposit : &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> am</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> am</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">am </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\nAmmount cant be negative Enter again: &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> label2</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">deposit</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">am</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			updateData</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> intIntoString</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">getBalance</span><span class="cpp1-symbol">()),</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tAmmount Successfully deposit...&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			cout</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-string">&quot;\tTotal amont in your bank is : &quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">getBalance</span><span class="cpp1-symbol">()&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\nAccount Dont exist&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+}
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> delete_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> x</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">verifyAccount</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">x</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		
+		DeleteData</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">x</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tAccount Succefully deleted!!!&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tAccount Dont exist.........&quot;</span><span class="cpp1-symbol">;
+}
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> withdrawAmount</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">verifyAccount</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	label2</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\n\tEnter The Ammount you want to Withdraw : &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> am</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> am</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">am </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tAmmount cant be negative\n\t Enter again: &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			Sleep</span><span class="cpp1-symbol">(</span><span class="cpp1-number">2000</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			system</span><span class="cpp1-symbol">(</span><span class="cpp1-string">&quot;cls&quot;</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">goto</span><span class="cpp1-space"> label2</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">am </span><span class="cpp1-symbol">&gt;</span><span class="cpp1-space"> ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">getBalance</span><span class="cpp1-symbol">())
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tInsufficient Balance.....&quot;</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">withdraw</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">am</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				updateData</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> intIntoString</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">getBalance</span><span class="cpp1-symbol">()),</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\tAmmount Successfully Withdraw&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				cout</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-string">&quot;\n\tTotla amont in your account is :&quot;</span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-identifier">ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">getBalance</span><span class="cpp1-symbol">()&lt;&lt;</span><span class="cpp1-identifier">endl</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tAccount Dont exist.......&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+}
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> display_all</span><span class="cpp1-symbol">()</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	account ac</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\t &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">getBankName</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">	cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\t &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">getBankAddress</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">	cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tAll Accounts  &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string name</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string accountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string balance</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string type</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> ch</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string line</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> usedDelimi </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> ','</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">//file handling
+</span><span class="cpp1-space">	string filename </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;accounts.txt&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	ifstream srcFile</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">filename</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">srcFile</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">is_open</span><span class="cpp1-symbol">())
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">srcFile</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">))
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			</span><span class="cpp1-comment">//Gets line of your source file into line variable
+</span><span class="cpp1-space">			delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">length</span><span class="cpp1-symbol">();</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				ch </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">at</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-comment">//if , seperator found in file
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> usedDelimi</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					delimiterCounter</span><span class="cpp1-symbol">++;
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">continue</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					name</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					accountNo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					balance</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					type</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">name </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;&quot;</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n*****************************************&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\t ACCOUNT DETAILS&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Account no. : &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> accountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Account Holder Name : &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> name</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Account Type : &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> type</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Account Balance: Rs &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> balance </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\\-&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n*****************************************&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			name</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			accountNo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			balance</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			type</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tUnable to open file.......&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	srcFile</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">close</span><span class="cpp1-symbol">();
+
+
+}
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> modify_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">verifyAccount</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">show_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n Enter \n\t 1.  Edit acccount holder's name \n\t 2.  Edit account no \n\t 3.  Edit account type\nChoose : &quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		string name</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		string no</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		string type</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		cin </span><span class="cpp1-symbol">&gt;&gt;</span><span class="cpp1-space"> choice</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		
+		</span><span class="cpp1-reservedword">switch</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">choice</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;Enter account holder's Name :&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			
+			cin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			cin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">ignore</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> name</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			updateData</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> name</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;Enter new Acount no. :&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		
+			cin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			cin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">ignore</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> no</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			updateData</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> no</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">case</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">:
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;Enter new Type :&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			
+			cin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			cin</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">ignore</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">			getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">cin</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> type</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			updateData</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> type</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-number">4</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">show_acc</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tAccount Succefully updates!!!&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tAccount Dont exist.....&quot;</span><span class="cpp1-symbol">;
+}
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> write_loan</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> accountNox</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> loanA</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string timeper</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> Monthly</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> string filename</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	ofstream myfile</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	myfile</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">open</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">filename</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> ios</span><span class="cpp1-symbol">::</span><span class="cpp1-identifier">app</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">	myfile </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n&quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> accountNox </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> ',' </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> loanA </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> ',' </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> timeper </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> ',' </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> Monthly</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	myfile</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">close</span><span class="cpp1-symbol">();
+}
+</span><span class="cpp1-reservedword">void</span><span class="cpp1-space"> showStudentLoanDtails</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">verifyAccount</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">verifyLoan</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">)
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			string loan</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			string plan</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			string accountNo</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			string inst</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> ch</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			string line</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> usedDelimi </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> ','</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-comment">//file handling
+</span><span class="cpp1-space">			string filename </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;studentLoan.txt&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			ifstream srcFile</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">filename</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">srcFile</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">is_open</span><span class="cpp1-symbol">())
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">srcFile</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">))
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					</span><span class="cpp1-comment">//Gets line of your source file into line variable
+</span><span class="cpp1-space">					delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">length</span><span class="cpp1-symbol">();</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">						ch </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">at</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">						</span><span class="cpp1-comment">//if , seperator found in file
+</span><span class="cpp1-space">						</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> usedDelimi</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">							delimiterCounter</span><span class="cpp1-symbol">++;
+</span><span class="cpp1-space">							</span><span class="cpp1-reservedword">continue</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">						</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">						</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">							accountNo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">						</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">						</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">1</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">							loan</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">						</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">						</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">2</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">							plan</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">						</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">						</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">3</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">							inst</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">						</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">					</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">accountNo</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">						cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\t &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">getBankName</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">						cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\t &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">getBankAddress</span><span class="cpp1-symbol">();
+
+</span><span class="cpp1-space">						cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n*****************************************&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">						cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\t Loan DETAILS&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">						cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Account no. : &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> ac</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">getAccountNo</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">						cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Loan Amount : &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> loan</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">						cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Installment plan : &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> plan</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">						cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t Monthly Installment: Rs &quot;</span><span class="cpp1-space"> </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> inst </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\\-&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">						cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n*****************************************&quot;</span><span class="cpp1-symbol">;
+
+
+</span><span class="cpp1-space">					</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">					loan</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">					plan</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">					inst</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">					accountNo</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tUnable to open file.....&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">			cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tThis Account has no Loan details!!!&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">else
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tAccount Not Exist....&quot;</span><span class="cpp1-symbol">;
+}
+
+</span><span class="cpp1-reservedword">bool</span><span class="cpp1-space"> verifyLoan</span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">	string type</span><span class="cpp1-symbol">;
+
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> ch</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	string line</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">char</span><span class="cpp1-space"> usedDelimi </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> ','</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-comment">//file handling
+</span><span class="cpp1-space">	string filename </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;studentLoan.txt&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	ifstream srcFile</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">filename</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">c_str</span><span class="cpp1-symbol">());
+
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">srcFile</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">is_open</span><span class="cpp1-symbol">())
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		</span><span class="cpp1-reservedword">while</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">getline</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">srcFile</span><span class="cpp1-symbol">,</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">))
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">			</span><span class="cpp1-comment">//Gets line of your source file into line variable
+</span><span class="cpp1-space">			delimiterCounter </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">for</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-reservedword">int</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">;</span><span class="cpp1-space"> i </span><span class="cpp1-symbol">&lt;</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">length</span><span class="cpp1-symbol">();</span><span class="cpp1-space"> i</span><span class="cpp1-symbol">++)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">				ch </span><span class="cpp1-symbol">=</span><span class="cpp1-space"> line</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">at</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">i</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-comment">//if , seperator found in file
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> usedDelimi</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					delimiterCounter</span><span class="cpp1-symbol">++;
+</span><span class="cpp1-space">					</span><span class="cpp1-reservedword">continue</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">delimiterCounter </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> </span><span class="cpp1-number">0</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">					type</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">push_back</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">ch</span><span class="cpp1-symbol">);
+</span><span class="cpp1-space">				</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">				
+
+			</span><span class="cpp1-symbol">}
+
+</span><span class="cpp1-space">			</span><span class="cpp1-reservedword">if</span><span class="cpp1-space"> </span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">StringtoInt</span><span class="cpp1-symbol">(</span><span class="cpp1-identifier">type</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">==</span><span class="cpp1-space"> num</span><span class="cpp1-symbol">)</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+
+
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">true</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">				</span><span class="cpp1-reservedword">break</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">			</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">		
+			type</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">clear</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">		</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">else</span><span class="cpp1-space"> </span><span class="cpp1-symbol">{
+</span><span class="cpp1-space">		cout </span><span class="cpp1-symbol">&lt;&lt;</span><span class="cpp1-space"> </span><span class="cpp1-string">&quot;\n\t\tUnable to open file......&quot;</span><span class="cpp1-symbol">;
+</span><span class="cpp1-space">	</span><span class="cpp1-symbol">}
+</span><span class="cpp1-space">	srcFile</span><span class="cpp1-symbol">.</span><span class="cpp1-identifier">close</span><span class="cpp1-symbol">();
+</span><span class="cpp1-space">	</span><span class="cpp1-reservedword">return</span><span class="cpp1-space"> </span><span class="cpp1-reservedword">false</span><span class="cpp1-symbol">;
+
+
+}
+</span></span>
+</code></pre>
+</body>
+</html>
