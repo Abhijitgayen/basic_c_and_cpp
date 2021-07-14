@@ -10,8 +10,23 @@ class node{
         }
 
 };
-void delete_ele( int val, node* head){
-    
+void delete_ele( int val, node* &head){
+    if(head->data== val){
+        node* temp =head;
+        head=head->link;
+        temp->link= NULL;
+        delete ( temp);
+    }
+    node * temp1 = head;
+    while( temp1!= NULL){/*for delete node we need  previous node of the node that will be deleted*/
+        if(temp1->link!=NULL && temp1->link->data == val){
+            node *tempdel=temp1->link;
+            temp1->link=temp1->link->link;
+            tempdel->link=NULL;
+            delete(tempdel);
+        }
+        temp1= temp1->link;
+    }    
 }
 void insert_node( node* &head, int val){
     node * n  = new node(val);
@@ -60,11 +75,10 @@ int main(){
    // insert_node(head,8);
     //insert_node(head,7);
     print_all(head);
-    insert_before( head, 1);
+    int del;
+    cin>>del;
+    delete_ele(del,head);
     print_all(head);
-    cout<<search_node(1, head)<<endl;
-    cout<<search_node(10, head)<<endl;
-    cout<<search_node(111, head)<<endl;
 
     return 0;
 }
