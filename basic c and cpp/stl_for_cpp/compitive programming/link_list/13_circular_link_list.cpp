@@ -47,6 +47,9 @@ void display( node * head){
 }
 int search_node( node * head, int val){
     node* temp=head;
+    if(head->data == val){
+     return 1;
+     }
     while(temp->link!=head){
         if(temp->data==val){
             return 1;
