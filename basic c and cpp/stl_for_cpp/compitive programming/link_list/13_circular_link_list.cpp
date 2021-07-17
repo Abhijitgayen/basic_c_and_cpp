@@ -47,9 +47,6 @@ void display( node * head){
 }
 int search_node( node * head, int val){
     node* temp=head;
-    if(head->data == val){
-     return 1;
-     }
     while(temp->link!=head){
         if(temp->data==val){
             return 1;
@@ -61,33 +58,9 @@ int search_node( node * head, int val){
 }
 /*delete is not work we need to see it*/
 void delete_node( node * &head, int val){
-        if(head->data== val){//this for head node 
-            if(head->link==head){
-                head->link=NULL;
-                delete (head);
-            }
-            else{
-                node* temp=head;
-                while(temp->link!=head){
-                    temp=temp->link;
-                }
-                node* tail= temp;
-                node* temp2=head;
-                head=head->link;
-                temp->link=NULL;
-                tail->link=head;
-                delete(temp2);
-            }
-            return;
-        }
-        //detete the midel element
-        node * temp3=head;
-        while(temp3->link!=head){
-            if(temp3->link->data==val){
-                cout<<"need to work"<<endl;
-            }
-            temp3=temp3->link;
-        }
+    if(head==NULL){
+        return;
+    }
 }
 int main(){
     int n, val;
