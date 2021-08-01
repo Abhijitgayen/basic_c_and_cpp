@@ -8,7 +8,8 @@ int main(){
          cin>>arr[i];
      }
     //   sort this array
-    sort(arr,arr+(n-1));/*we need here begin and end pointer to sort array*/
+    sort(arr,arr+n);/*we need here begin and end pointer to sort array*/
+/*not arr+(n-1)*/
     for( int i=0 ;i<n;i++) cout<<arr[i]<<" ";
     cout<<endl;
     // for vector
